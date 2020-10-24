@@ -1,0 +1,7 @@
+Var: x = 1;
+                    Var: y,z[12][1][1234567890000] = 2,3;
+                    Function: main
+                        Parameter:
+                        Body:
+                            foo(1[0x1245ABCDF],a(0o1234567),True);
+                        EndBody.

@@ -1,0 +1,1 @@
+Var,:,x,=,1,;,Var,:,y,,,z,=,2,,,3,;,Function,:,foo,Parameter,:,a,[,1,],,,a,,,b,,,c,Body,:,Var,:,x,,,y,;,Var,:,z,;,Do,Var,:,x,,,y,;,x,=,x,+.,+,1,;,y,=,y,+,1,;,While,(,x,<,10,),Error Token &

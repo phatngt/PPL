@@ -1,0 +1,8 @@
+ Function: main
+                        Parameter:
+                        Body:
+                            If e = 1 Then
+                                a = 2;
+                                Return a;
+                            EndIf.
+                        EndBody.

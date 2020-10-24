@@ -1,0 +1,14 @@
+Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[0x123ABC][0o12345],a,b,c
+                        Body:
+                            Var: x,y;
+                            Var:z;
+                            Do
+                                Var: x,y;
+                                x = x+1 + ** Error here?? \b\r\f\n\t\'\\** 1;
+                                y = y+1 + **This is cmnt? Right,hihi**"abc"+True ;
+                            While a[!!(x < 0x123A)][!!(1-1.0)b[15]] 
+                            EndDo.
+                        EndBody.

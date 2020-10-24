@@ -1,0 +1,17 @@
+ Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],a,b,c
+                        Body:
+                            Var: x,y;
+                            Var:z;
+                            If n == 0 Then
+                                Var:z;
+                            ElseIf n == 0 Then
+                                Var:a;
+                            Else
+                                Var:b;
+                            EndIf.
+                            Var: d,f;
+                        EndBody.
+                    

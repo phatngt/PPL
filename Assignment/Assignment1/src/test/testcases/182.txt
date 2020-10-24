@@ -1,0 +1,10 @@
+Var: x = 1;
+                    Var: y,z[12][1][1234567890000] = 2,3;
+                    Function: main
+                        Parameter:
+                        Body:
+                            While ((i-.(1&&(4||2)))=/=5)>=.7-. Do
+                                printLn(1);
+                                Continue;
+                            EndWhile.
+                        EndBody.

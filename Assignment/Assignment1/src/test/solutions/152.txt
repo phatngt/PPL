@@ -1,0 +1,1 @@
+Function,:,fact,Parameter,:,a,,,b,,,c,Body,:,func,(,True,),;,EndBody,.,<EOF>

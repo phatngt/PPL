@@ -1,0 +1,11 @@
+ Var: x = 1;
+                    Var: y,z[12][1][1234567890000] = 2,3;
+                    Function: main
+                        Parameter:
+                        Body:
+                            Var: x,a = 1,"a";
+                            a = !!!!!!!!!x;
+                            a = (a&&(&&b));
+                            foo(a,a(0o1234567),True);
+                        EndBody.
+                    

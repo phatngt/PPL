@@ -1,0 +1,7 @@
+ Function: main 
+                        Parameter:a[0x123ABC][0o12345],a,b,c
+                        Body:
+                            printLn(1234,0xAAA,{{{{12,34}}}},a[1][2][3][4.0+0x123]);
+                            print("Goodbye world","Happy Women Day");
+                        EndBody.
+                    

@@ -1,0 +1,17 @@
+ Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a,b
+                        Body:
+                            a = c()+d()+f();
+                            For( i = a(),i < b(),c()) Do
+                                Return d();
+                            EndFor.
+                            Return a;
+                        EndBody.
+                    Function: main
+                        Parameter:
+                        Body:
+                            foo(1,2,3);
+                        EndBody.
+                    

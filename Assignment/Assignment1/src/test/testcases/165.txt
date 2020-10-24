@@ -1,0 +1,13 @@
+Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],             a           ,           b           ,           c
+                        Body:
+                            Var: x,y;
+                            Var:z;
+                            While i < 10 Do
+                                Var: x,y;
+                                x = x+1 + "                     123";
+                                y = y+1 + "1234'";
+                            EndWhile.
+                        EndBody.

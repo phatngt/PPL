@@ -1,0 +1,7 @@
+ ** Computer balble **
+                Var: x[1][1][1][1] = {{{{2}}}}};
+                Function: foo
+                    Parameter: x,y,z
+                    Body:
+                        printLn(x[1][1][1][1]);
+                    EndBody. 

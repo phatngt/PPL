@@ -1,0 +1,1 @@
+DO a = 1; b = 2; i= i + 1; While i < 10 EndDo.

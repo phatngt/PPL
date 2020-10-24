@@ -1,0 +1,5 @@
+ Function: foo
+                    Parameter:
+                    Body:
+                        foo(X,y,z);
+                    EndBody. 

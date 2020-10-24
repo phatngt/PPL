@@ -1,0 +1,8 @@
+Function: main
+                        Parameter:
+                        Body:
+                            Do
+                                i = i+1;
+                            While i < 10
+                            EndDo.
+                        EndBody. 

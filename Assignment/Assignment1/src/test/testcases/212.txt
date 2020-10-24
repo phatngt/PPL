@@ -1,0 +1,10 @@
+ Function: main
+                        Parameter:
+                        Body:
+                            If (e == 1) && f  Then
+                                a = 2;
+                                Return a;
+                            ElseIf
+                                Return 1;
+                            EndIf.
+                        EndBody.

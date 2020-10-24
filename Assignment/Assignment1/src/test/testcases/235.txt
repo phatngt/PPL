@@ -1,0 +1,8 @@
+ Function: foo 
+                        Parameter:a[1]
+                        Body:
+                            b = a[1+2];
+                            a[i+2] = (1+3)+4;
+                            a = foo(,,,,);
+                            a = 0[10];
+                        EndBody.

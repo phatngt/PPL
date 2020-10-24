@@ -1,0 +1,6 @@
+Function: foo
+                    Parameter:a,b,c
+                        Body:
+                            Var:x;
+                            d = 1; 
+                        EndBody.

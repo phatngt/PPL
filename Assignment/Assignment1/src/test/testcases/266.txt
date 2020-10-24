@@ -1,0 +1,22 @@
+ Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],a,b,c
+                        Body:
+                        Var: i = 1;
+                            While i < 0 Do
+                                i = i + 1;
+                                While i > 10 Do
+                                    a = a + 1;
+                                While i < 10
+                                EndDo.
+                                EndWhile.
+                            EndWhile.
+                        EndBody.
+                    Function: main
+                        Parameter:
+                        Body:
+                            foo(1,2,3);
+                            facb(a,1,2);
+                        EndBody.
+                    

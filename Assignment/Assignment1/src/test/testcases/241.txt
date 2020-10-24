@@ -1,0 +1,9 @@
+ Function: foo 
+                        Parameter:a[1]
+                        Body:
+                            Var: a[1],b,c,x,y,z;
+                            a[1] = (a>b)&&(c<d);
+                            b = (c >= d) && (e >. g);
+                            c = ((c>=d) && e) >. g;
+                            x = !(((c > 1)&&c)||d);
+                        EndBody.

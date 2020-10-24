@@ -1,0 +1,7 @@
+Function: main
+                        Parameter:
+                        Body:
+                            If 1 == 0.0 Then
+                                Return 1;
+                            EndIf.
+                        EndBody.

@@ -1,0 +1,31 @@
+ Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],a,b,c
+                        Body:
+                        If n == 10 Then
+                            For(i = 1, i < 9, 1) Do
+                                While i < 0 Do
+                                    Do 
+                                        Var: a;
+                                        a = a+1;
+                                        If a < 50 Then 
+                                            Continue;
+                                        ElseIf a > 50 Then
+                                            Break;
+                                        Else
+                                            Return 0;
+                                        EndIf.
+                                    While a < 100
+                                    EndDo.
+                                EndWhile.
+                            EndFor.
+                        EndIf.
+                        EndBody.
+                    Function: main
+                        Parameter:
+                        Body:
+                            foo(1,2,3);
+                            facb(a,1,2);
+                        EndBody.
+                    

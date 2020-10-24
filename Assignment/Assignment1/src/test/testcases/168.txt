@@ -1,0 +1,9 @@
+Function: foo 
+                        Parameter:a = c(),b
+                        Body:
+                            a = c()+d()+f();
+                            For( i = a(),i < b(),c()) Do
+                                Return d(**This is cmt \t\n\f\r**"abc""aaa'");
+                            EndFor.
+                            Return a;
+                        EndBody. 

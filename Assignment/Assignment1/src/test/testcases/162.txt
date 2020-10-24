@@ -1,0 +1,13 @@
+Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],a,b,c
+                        Body:
+                            Var: x,y;
+                            Var:z;
+                            For (i = 0, i < 10,i+1) Do
+                                Var: x = 1;
+                                printLn();
+                                Var: a,b;
+                            EndFor.
+                        EndBody. 

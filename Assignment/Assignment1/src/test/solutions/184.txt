@@ -1,0 +1,1 @@
+Var,:,x,=,1,;,Var,:,y,,,z,[,12,],[,1,],[,1234567890000,],=,2,,,3,;,Function,:,main,Parameter,:,Body,:,While,(,(,i,-.,(,1,&&,(,4,||,2,),),),=/=,5,),>=.,7,&&,foo,(,),Do,printLn,(,1,),;,Continue,;,If,(,n_123_ACV____,==,1e12123,),||,a,[,[,[,[,[,[,[,a,],],],],],],],Then,EndIf,.,EndWhile,.,EndBody,.,<EOF>

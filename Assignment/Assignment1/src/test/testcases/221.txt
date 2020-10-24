@@ -1,0 +1,8 @@
+Function: main
+                        Parameter:
+                        Body:
+                            While  Do
+                                i = i+1;
+                                printLn(i);
+                            EndWhile.
+                        EndBody. 

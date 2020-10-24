@@ -1,0 +1,32 @@
+ Var: x = 1;
+                    Var: y,z = 2,3;
+                    Function: foo 
+                        Parameter:a[1],a,b,c
+                        Body:
+                            ** This is a comment
+                                *aa
+                                v
+                                c
+                            **
+                            Var: x,y;
+                            Var:z;
+                            While i < 10 Do
+                                Var: x,y;
+                                x = x+1;
+                                y = y+1;
+                            EndWhile.
+                        EndBody.
+                    Function: facb
+                        Parameter: a,b,c
+                        Body:
+                            Var: x,y;
+                            foo(c,b,a);
+                            Return 1;
+                        EndBody.
+                    Function: main
+                        Parameter:
+                        Body:
+                            foo(1,2,3);
+                            facb(a,1,2);
+                        EndBody.
+                    

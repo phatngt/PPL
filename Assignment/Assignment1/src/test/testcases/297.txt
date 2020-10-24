@@ -1,0 +1,16 @@
+ Function: foo 
+                        Parameter:a[0x123ABC][0o12345],a,b,c
+                        Body:
+                            While True Do 
+                            EndWhile.
+                            Do
+                            While True 
+                            EndDo.
+                            If True Then
+                            ElseIf True Then
+                            Else
+                            EndIf.
+                            For(i=True,i<True,True) Do
+                            EndFor.
+                        EndBody.
+                    

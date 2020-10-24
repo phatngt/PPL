@@ -1,0 +1,4 @@
+Var: x,y[1][2] = 10,{{1,"abc"},{2.0,True}};
+                For(i = 0, i < x, i=i+1) Do
+                    y[1][1] = 2;
+                EndFor. 

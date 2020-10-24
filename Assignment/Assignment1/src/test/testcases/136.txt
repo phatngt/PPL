@@ -1,0 +1,3 @@
+ FoR ( i = 2, i > 10, 4) Do:
+                    writeln(i);
+                EndFor. 

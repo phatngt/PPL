@@ -1,0 +1,11 @@
+Function: foo 
+                        Parameter:a,b
+                        Body:
+                            a = c()+d()+f();
+                            ** Cmt \r\b\t\f\n** 
+                            b = (c(d(e(f(g(1-2)*3)\\4)%5)+6));
+                            For( i = a(****),i < b(**Cmt \r\b\t\f\n**),c()) Do
+                                Return d();
+                            EndFor.
+                            Return a;
+                        EndBody.

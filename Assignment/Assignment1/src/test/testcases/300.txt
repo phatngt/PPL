@@ -1,0 +1,14 @@
+ Function: foo 
+                        Parameter:a[0x123ABC][0o12345],a,b,c
+                        Body:
+                            Var:a;
+                            Var:a_;
+                            Var:aB;
+                            Var:a_B**This is cmt**;
+                            Var:a123a_123A;
+                            Var:a_b_123_B[123][0x123];
+                            If True Then
+                            EndIf.
+                            Var: error[1][2][3];
+                        EndBody.
+                    

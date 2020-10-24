@@ -1,0 +1,1 @@
+Function,:,foo,Parameter,:,a,,,b,Body,:,a,=,c,(,),+,d,(,),+,f,(,),;,b,=,(,c,(,d,(,e,(,f,(,g,(,1,-,2,),*,3,),\,\,4,),%,5,),+,6,),),;,For,(,i,=,a,(,),,,i,<,b,(,),,,c,(,),),Do,Return,d,(,),;,EndFor,.,Return,a,;,EndBody,.,<EOF>

@@ -1,0 +1,4 @@
+Var: x = 10;
+                If x == 10 Then 
+                    printLn("Goodbye world");
+                EndIf. 

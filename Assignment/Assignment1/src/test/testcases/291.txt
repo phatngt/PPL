@@ -1,0 +1,7 @@
+ Function: main 
+                        Parameter:a[0x123ABC][0o12345],a,b,c
+                        Var: x = 1;
+                        Body:
+                            **Goodbye world**
+                        EndBody.
+                    

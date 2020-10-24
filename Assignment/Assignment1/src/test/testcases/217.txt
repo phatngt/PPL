@@ -1,0 +1,7 @@
+Function: main
+                        Parameter:
+                        Body:
+                            For(i = 1, i < 10,1)
+                                printLn(i);
+                            EndFor.
+                        EndBody. 
