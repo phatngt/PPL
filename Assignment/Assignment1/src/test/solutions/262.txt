@@ -1,1 +1,1 @@
-Error on line 6 col 28: Body
+Error on line 2 col 33: 3

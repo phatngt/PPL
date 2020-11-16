@@ -1,1 +1,1 @@
-Var: x;
+Var: x,y=1,z;

@@ -1,0 +1,104 @@
+1. Introdution
+AST: Cây cú pháp trừu tượng.
+- Là dạng cây biểu diễn cho mã nguồn
+- Khác parse tree: Khi phân tích cú pháp, thì bỏ đi một số chi tiết-> AST nhỏ hơn Parse Tree
+Example:
+exp -> exp  + term|term
+term-> term * fact|fact
+fact-> (exp)|ID|N
+	4*(5+3)
+
+Parse Tree
+		<exp>
+		  |
+		<term>
+	      /    |   \
+           <term>  *  <fact>
+             |	     /   |  \	
+	   <fact>   (  <exp> ) 
+	     |	     /   |   \
+	    N(4)  <exp>  +  <exp>
+   		    |         |
+		  <term>    <fact>
+		    |         |
+		  <fact>     N(5)
+		    |
+		   N(3)     
+AST:
+
+	*
+       / \
+      4   +
+         / \
+        5   3
+Exercise: Cho luật sinh của lệnh gán trong văn phạm của một ngôn ngữ như sau:
+
+assign → ID EQUAL exp SEMI
+
+trong đó ID là token đại diện cho một danh hiệu, EQUAL là token đại diện cho
+dấu gán '=', exp là ký hiệu không kết thúc đại diện cho biểu thức và SEMI là
+token đại diện cho dấu ';'. Ngữ nghĩa của lệnh gán là lấy giá trị của biểu thức
+exp gán vào biến có tên là ID. Giả sử trên cây AST, nút ASSIGN dùng để biểu
+diễn lệnh gán. Vậy nút này sẽ cần phải có bao nhiêu nút con?
+Solution:
+
+	ASSIGN
+	  /\
+	ID exp
+2. Implement
+In Scala:
+trait Exp (abs class)
+case class BinExp(op:String, e1:Exp,e2:Exp) extends Exp
+case class UnaExp(op:String, e:Exp) extends Exp
+case class Lit(i:Int) extends Exp
+
+Example: 4*(5+3)
+Parse Tree
+		<exp>
+		  |
+		<term>
+	      /    |   \
+           <term>  *  <fact>
+             |	     /   |  \	
+	   <fact>   (  <exp> ) 
+	     |	     /   |   \
+	    N(4)  <exp>  +  <exp>
+   		    |         |
+		  <term>    <fact>
+		    |         |
+		  <fact>     N(5)
+		    |
+		   N(3) 
+Convert AST:
+
+		BinExp
+	        / |  \
+	      e1  *   e2
+	      |        |
+	     Lit     BinExp
+	      |      /  |  \
+              4     e1  +  e2
+   		    |       |
+		   Lit     Lit
+		    5       3
+Exercise:
+1.Chọn cây AST thich hợp nhất cho biểu thức: 12 * (3 + 5) - 20 (độ ưu tiên các 
+phép toán như thông lệ)? 
+Solution:
+                    BinExp
+          	   /   |  \
+                  e1   -   e2
+		  |        |
+		BinExp     Lit
+	        / |  \      20
+	      e1  *   e2
+	      |        |
+	     Lit     BinExp
+	      |      /  |  \
+             12     e1  +  e2
+   		    |       |
+		   Lit     Lit
+		    3       5
+3. Parse Tree
+
+

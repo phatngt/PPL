@@ -1,0 +1,6 @@
+ Function: foo
+                        Body:
+                            While x < 10 Do
+                                x = x + 1
+                            EndWhile.
+                        EndBody. 

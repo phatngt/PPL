@@ -1,0 +1,100 @@
+Giới thiệu Flutter:
+Flutter là UI SDK mã nguồn mở do Google phát triển. Nó được sử dụng để
+phát triển các ứng dụng Android,IOS,Linux,Mac,Windown,Google và web với
+một codebase duy nhất. Và FLutter hoàn toàn miễn phí.
+
+Flutter 1.0 được phát hành ngày 4-12-2018. Version hiện tại của Flutter
+là 1.20.4. Flutter dùng ngôn ngữ Dart, hiện tại version của Dart là 2.9.2
+Flutter được phát triển nhằm giải quyết bài toán thường gặp trong mobile
+là Fast Development và Native Performance. Nếu như React Native chỉ đảm
+bảo Fast Development và code native thuần chỉ đảm bảo Native Performance
+thì Flutter làm được cả 2 điều trên.
+
+Tại sao nên sử dụng Flutter:
+Phát triển ứng dụng nhanh chóng: Tính năng hot reload của nó giúp bạn
+nhanh chóng và dễ dàng thử nghiệm, xây dựng giao diện người dùng, thêm
+tính năng và sửa lỗi nhanh hơn. Trải nghiệm tải lại lần thứ hai, mà không
+làm mất trạng thái, trên emulator, simulator và device cho iOS và Android.
+
+UI đẹp và biểu cảm: Thỏa mãn người dùng của bạn với các widget built-in đẹp
+mắt theo Material Design và Cupertino (iOS-flavor), các API chuyển động phong
+phú, scroll tự nhiên mượt mà và tự nhận thức được nền tảng.
+
+Truy cập các tính năng và SDK native: Làm cho ứng dụng trở nên sống động với
+API của platform, SDK của bên thứ ba và native code. Nó cho phép bạn
+sử dụng lại mã Java, Swift và ObjC hiện tại của mình và truy cập các tính năng
+và SDK native trên iOS và Android.
+
+Flutter dễ học và dễ sử dụng: Flutter là một framework hiện đại, dễ dàng
+thấy khi học nó Sử dụng nó để tạo ứng dụng di động rất đơn giản. Có thể
+tạo một ứng dụng Native thực sự mà không cần code nhiều
+
+Nhanh chóng hiện thực hóa ý tưởng cho các Startup: Phát triển ứng dụng di
+động với Flutter rẻ hơn vì không cần phải tạo và duy trì hai phiên bản
+(một cho iOS và một cho Android).Một lập trình viên là đủ để tạo ra sản
+phẩm hoàn thiện.Hiệu suất-sẽ không nhận thấy được sự khác biệt về hiệu 
+suất giữa ứng dụng native và ứng dụng tạo bởi Flutter.Nó rất đẹp-có thể
+dễ dàng sử dụng các tiện ích do Flutter cung cấp và cá nhân hóa nó để
+tạo UI có giá trị hơn.
+
+Tài liệu cực kỳ tốt:  tài liệu của Flutter và mọi thứ đều rất chi tiết
+với các ví dụ dễ hiểu, dễ làm theo.
+
+Một cộng đồng đang phát triển mạnh mẽ: Flutter có một cộng đồng mạnh mẽ,
+nó mới chỉ bắt đầu nhưng hầu hết là cộng đồng cực kỳ chất lượng
+
+Flutter dược hỗ trợ trên Android Studio và VS Code: Flutter có sẵn trên
+nhiều IDE khác nhau. Hai trình soạn thảo chính để phát triển với công
+nghệ này là Android Studio (IntelliJ) và VS Code.
+
+
+
+
+
+Giới thiệu về Dart:
+Thì Dart là một ngôn ngữ lập trình mã nguồn mở hướng tới cộng đồng do 
+Google phát triển. Nó là ngôn ngữ hướng đối tượng với cú pháp giống
+ngôn ngữ C. Dart thừa hưởng những tính năng hiện đại của các ngôn ngữ
+khác nên Dart là ngôn ngữ dễ học. Những lập trình viên Java hoặc C++
+dễ dàng học và nắm bắt Dart trong thời gian ngắn vì cấu trúc tương tự
+như 2 ngôn ngữ trên. Vì thế, nên Flutter chọn Dart làm ngôn ngữ cho
+framework
+
+Một số tính năng nổi bật của Dart:
+Dart is AOT(Ahead Of Time):
+Details: Với Ahead Of Time thì trình biên dịch chuyển thẳng ngôn ngữ 
+Dart sang Native code giúp hiệu năng tốt nhất có thể, đảm bảo hiệu 
+suất thời gian chạy nhất quán. Tất cả mọi thứ trong Flutter có thể 
+được hiện thực bằng Dart.
+
+Dart is JIT( Just in Time):
+Details: Máy ảo Dart có JIT compiler hổ trợ cho việc thông dịch code
+và tối ưu thời gian chạy. Vì thế nên thời gian giữa việc chuyển từ
+code sang test trên thiết bị được rút ngắn đáng kể. Đây là tính năng
+Hot Reload
+
+Dart là ngôn ngữ thuần OOP.
+
+Ngôn ngữ Dart giống Java, là cải tiến từ Javascript, cũng là hệ C nên
+cú pháp tương tự nhau.
+
+DART cũng hướng tới việc trở thành một ngôn ngữ có thể chạy trên nhiều
+platform khác nhau, nó cũng có máy ảo (VM) làm nhiệm vụ dịch source code
+sang bytecode như Java. Hiện tại DART có thể transpile ra các ngôn ngữ
+khác như JS để chạy trên trình duyệt
+
+Những ưu điểm của Dart:
+Năng suất: Cú pháp Dart rõ ràng và súc tích, công cụ của nó đơn giản 
+nhưng mạnh mẽ. Type-safe giúp bạn xác định sớm các lỗi. Dart có thư
+viện cốt lõi và hàng ngàn package hỗ trợ
+
+Nhanh: Dart cung cấp tối ưu hóa việc biên dịch Just In Time nên hiệu
+suất cao debug cao, kết hợp với Ahead Of Time nên khởi động nhanh
+trên thiết bị di dộng và web
+
+Dễ gần: Dart là ngôn ngữ hiện đại, được kế thừa các ưu điểm của ngôn
+ngữ khác nên cú pháp của Dart khá giống với một số ngôn ngữ phổ biến.
+Những dev Java,JavaScritp,C++,.. có thể làm việc hiệu quả với Dart
+sau vài ngày
+
+ 

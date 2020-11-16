@@ -44,10 +44,10 @@ fragment UnterminatedComment: .*? ~('*');
 program  : var_declare* func_declare* EOF ;
 
 //-----------Declare variable------------//
-var_declare: VAR COLON varlist (ASSIGN valuelist)* SEMI ;
-varlist: var (COMMA varlist)*;
+var_declare: VAR COLON varlist (COMMA varlist)* SEMI ;
+varlist: var (ASSIGN valuelist)*;
 var: ID (LSB INTLIT RSB)*;
-valuelist: litlist (COMMA litlist)*;
+valuelist: litlist ;
 
 
 //-----------Declare function-------------//

@@ -1,0 +1,39 @@
+Cau 1:
+L(O) = [O]
+L(A) = [A] + merge(L(O),[O]) = [A,O]
+L(B) = [B] + merge(L[O],[O]) = [B,O]
+L(C) = [C] + merge(L[O],[O]) = [C,O]
+L(D) = [D] + merge(L(A),L(B),[A,B]) = [D] + merge([A,O],[B,O],[A,B])
+	*A is a good head => [A] + merge([O],[B,O],[B])
+	*O is not a good head => check B
+	*B is a good head => [A,B] + merge([O],[O],[])
+	*O is a good head => [A,B,O]
+=> L(D) = [D] + [A,B,O] = [D,A,B,O]
+L(E) = [E] + merge(L(C),L(A),[C,A]) = [E] + merge([C,O],[A,O],[C,A])
+	* Similiar to about
+L(E) = [E,C,A,O]
+L(F) = [F] + merge(L(D),L(B),L(E),[D,B,E])
+     = [F] + merge([D,A,B,O],[B,O],[E,C,A,O],[D,B,E])
+	* D is a good head
+	* A not a good head
+	* B is not a good head
+	* ????
+L(F) = [F,D,B,E,C,A,O]
+Fix: F(D,E,B) => L(F)
+L(F) = [F] + merge(L(D),L(E),L(B),[D,E,B])
+     = [F] + merge([D,A,B,O],[B,O],[E,C,A,O],[D,E,B])
+	* D is a good head !
+	* A is not a good head
+	* B is not a good head
+	* O is not a good head
+	* E is a good head !
+	* C is a good head !
+	* A is a good head !
+	* B is a good head !
+	* O is a good head !
+L(F) = [F,D,E,C,A,B,O]
+b. Class foo func in class C
+
+Cau 2:
+
+	

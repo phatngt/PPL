@@ -1,0 +1,127 @@
+Syntax Analysis
+Context-free Grammar:
+Tập kết thúc T
+Tập không kết thúc N
+Ký hiệu bắt đầu S thuộc N
+Tập các luật sinh P
+
+Ngôn ngữ phi ngữ cảnh:
+Cho G là một văn phạm phi ngữ cảnh. Ngôn ngữ phi ngữ cảnh L(G)
+được tạo ra từ nhiều cách thức khác nhau từ văn phạm phi ngữ cảnh.
+Từ những ký hiệu kết thúc thuộc T và dẫn xuất từ ký hiệu bắt đầu S
+dùng 1 hoặc nhiều lần thay thế sẽ tạo ra ngôn ngữ phi ngữ cảnh.
+
+Function programing
+Higher-order Functions nhận function như một tham số hoặc kết quả sinh
+ra là một function, hoặc cả 2
+Có một số loại hàm bậc cao:
+Function composition: Hàm hợp
+-Chi tiết: Hàm này nhận 2 hàm như một tham số và sinh ra một function mà
+giá trị là function thứ 1 có tham số là kết quả của function thứ 2 với 
+tham số là tham số được truyền vào từ hàm sinh ra.
+
+Apply-to-all: Áp dụng cho tất cả
+-Chi tiết: Là một hàm nhận 1 hàm như một tham số và sinh ra một danh sách
+giá trị thu được từ việc áp dụng các phần tử của danh sách tham số vào trong
+hàm cho trước.
+
+Forall/Exist: Tất cả/Tồn tại
+-Chi tiết: Hàm này nhận một hàm predicate(vị từ-logic) như một tham số và
+sinh ra giá trị thu được bằng cách áp dụng các phần tử trong danh sách của
+tham số vào hàm cho trước và thực hiện and/or các kết quả.
+
+Insert Left/ Insert Right: Thêm trái/Thêm phải
+Chi tiết: Ví dụ luôn chứ k có lời giải thích
+In scala: List(2,3,4).foldLeft("A")((a,b)=> a+b)
+Result: A234
+Details:
+		f
+	       / \
+	      f   4
+             / \
+            f   3
+           / \
+          A   2
+List(2,3,4).foldRight("A")((a,b)=> a+b)
+Result: 234A
+Details:
+	f
+       / \ 
+      2   f
+	 / \
+        3   f
+           / \
+          4   A
+
+Function as Parameter: Function như tham số
+-Chi tiết: Có thể pass tham số là function do user định nghĩa
+Example:
+def apply(x:int):
+    def f(func):
+	return func(x)
+    return f
+def incl(x):
+    return x+1
+def sq(x):
+    return x*x
+lst = [incl,sq]
+print(list(map(apply(3),lst)) // [4,9]
+
+Closure: Bao đóng
+Chi tiết: Một object là data với function. Một closure là function
+với data. John D.Cook
+""" Closure là một hàm được gắn với một môi trường dữ liệu """
+
+Example:
+def power(x):
+    return lamda a: a**x
+square = power(2)
+print(square(5)) //25
+cube = power(3)
+print(cube(3)) //27 
+
+Currying function: 
+-Chi tiết: Curryinh function thực hiện đơn giản hóa việc thực thi một
+hàm có nhiều đối số thành thành thực thi các hàm có một đối số một cách
+tuần tự. Nói một cách dễ hiểu, Currying được sử dụng để chuyển đổi hàm
+có nhiều đối số thành hàm có đơn đối số bằng việc tính toán sâu dần của
+các đối số hàm lồng nhau.
+Example:
+In python
+def print(x):
+def prt(x):
+    def f(a):
+        def g(b):
+            def h(c):
+                print(x,a,b,c)
+            return h
+        return g
+    return f
+if __name__ == "__main__":
+    prt(1)(2)(3)(4)
+//
+def change(a,b):
+    def f(x):
+        return a(b(x))
+    return f
+def kilo2meter(x):
+    return x*1000
+def meter2cen(x):
+    return x*100
+if __name__ == "__main__":
+    print(change(kilo2meter,meter2cen)(10))
+
+Immutable: Không thể thay đổi
+Lazy Evaluation: Tính toán lười
+-Chi tiết: một biểu thức được gán cho một biến, giả sử là x, khi nào
+sử dụng x thì biểu thức mới được tính toán.
+
+Type inference:
+
+Ứng dụng của closure trên Python: Decorator:
+Chi tiết: Decorator cho phép chúng ta thay đổi hành vi của function
+or class mà không cần phải chỉnh sửa nó
+
+/----------------Nháp-------------/
+def subsum(lst):
+	return list(map(lambda x:
