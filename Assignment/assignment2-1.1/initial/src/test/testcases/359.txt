@@ -1,0 +1,6 @@
+
+                Function: foo
+                        Body:
+                            a = (b+d)*(d-f);
+                        EndBody.
+                

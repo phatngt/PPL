@@ -1,0 +1,11 @@
+
+                Var: a,b=1,c=2.0,d=False,e="s",f[2]={0x2,0o7};
+                Var: x[1][2] = {{1,"abc"},{True,1e2}};
+                Function: main
+                    Parameter: a,b[1],c[1][2]
+                    Body:
+                        Var: x, y,z;
+                        Var: a,b,c;
+                        (((a&&x)+(b||y))+func(x,y))[1+func(1+func()[1])]=1;
+                    EndBody.
+                    

@@ -1,0 +1,9 @@
+
+                Function: foo
+                        Body:
+                            If a > 0 Then
+                                Var: x = 1; 
+                                x = x +1;
+                            EndIf.
+                        EndBody.
+                

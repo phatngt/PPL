@@ -1,0 +1,15 @@
+
+                Var: x,y,z;
+                Function: foo
+                        Body:
+                            If x > 10 Then Return;
+                            EndIf. 
+                        EndBody.
+                Function: main
+                        Body:
+                            While True Do
+                                a = b + c +. d - e -. f;
+                            EndWhile.
+                            
+                        EndBody.
+                

@@ -1,0 +1,9 @@
+
+                Function: foo
+                        Body:
+                            For (x = 1, x < 100, 1) Do
+                                Var: y;
+                                print(x,y);
+                            EndFor.
+                        EndBody.
+                

@@ -1,0 +1,18 @@
+
+        Function: doST
+            Parameter: n 
+            Body:
+                Var: x = 1;
+                If x < 2 Then 
+                    Var: n = 3;
+                    x = n;
+                ElseIf x < 1 Then 
+                    Var: m = 0;
+                    x = m;
+                ElseIf x < 0 Then
+                    n = True;
+                Else 
+                    Var: t = 1;
+                    x = {{1,2},{3,4},{5,6}};
+                EndIf.
+            EndBody.

@@ -1,0 +1,7 @@
+
+                Function: foo
+                        Body:
+                            If a > 0 Then a = a +1;
+                            EndIf.
+                        EndBody.
+                

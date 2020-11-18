@@ -1,0 +1,7 @@
+
+                Function: foo
+                        Body:
+                            print(x);
+                            fun(print(x),print(y),x);
+                        EndBody.
+                

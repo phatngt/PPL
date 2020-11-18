@@ -1,0 +1,9 @@
+
+                Function: foo
+                        Body:
+                            While x < 1 Do
+                                print(x);
+                                x = x +1;
+                            EndWhile.
+                        EndBody.
+                

@@ -1,0 +1,12 @@
+
+            Var: a, b, c;
+            Function: doST
+                Parameter: n
+                Body:
+                    Var: m = 1;
+                    While n < 4 Do
+                        m = m + 1;
+                        n = n * 2;
+                        Break;
+                    EndWhile.
+                EndBody.

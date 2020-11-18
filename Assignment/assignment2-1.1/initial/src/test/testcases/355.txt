@@ -1,0 +1,7 @@
+
+                Function: foo
+                        Body:
+                            a = -b;
+                            b = -.c;
+                        EndBody.
+                

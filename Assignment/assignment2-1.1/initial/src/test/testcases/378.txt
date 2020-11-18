@@ -1,0 +1,13 @@
+
+        Var: a, b;
+        Function: doST
+            Parameter: n
+            Body:
+                Do 
+                    m = m + 1;
+                    a = doST(b);
+                    Continue;
+                While
+                    n < 4
+                EndDo.
+            EndBody.

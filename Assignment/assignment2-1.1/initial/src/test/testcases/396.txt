@@ -1,0 +1,20 @@
+
+                Var: a,b=1,c=2.0,d=False,e="s",f[2]={0x2,0o7};
+                Var: x[1][2] = {{1,"abc"},{True,1e2}};
+                Function: main
+                    Parameter: a,b[1],c[1][2]
+                    Body:
+                        Var: x, y,z;
+                        Var: a,b,c;
+                        If a =/= 100.0 Then
+                            For (y = 10,y <. 1000.0,y +. 10.0) Do
+                                Continue;
+                            EndFor.
+                        ElseIf b >= 0x16 Then
+                            Var: t = 1;
+                            While a <=. 10.5 Do
+                                Break;
+                            EndWhile.
+                        EndIf.
+                    EndBody.
+                    

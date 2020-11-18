@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(foo)[],([][Dowhile([],[],BinaryOp(>,Id(x),IntLiteral(10)))]))])

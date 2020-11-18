@@ -1,4 +1,5 @@
  Function: foo
                         Body:
+                            a = 1;
                             (a+1)[1+b][3+c] = x+1;
                         EndBody. 

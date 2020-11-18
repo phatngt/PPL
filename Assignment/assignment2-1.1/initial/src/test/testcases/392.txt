@@ -1,0 +1,14 @@
+
+        Function: doST
+            Parameter: n, m
+            Body:
+                Var: i;
+                n = 30;
+                m = 0;
+                z = 1;
+                For (i = 0, i < 5, 1) Do
+                    n = n \ 2;
+                    m = m + 3 ;
+                    z = z * 3 - n[1];
+                EndFor.
+            EndBody.

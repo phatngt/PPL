@@ -44,7 +44,7 @@ fragment UnterminatedComment: .*? ~('*');
 program  : declaration+ EOF ;
 // declaration: (var_declare+ func_declare*)| (var_declare* func_declare+);
 declaration: vardeclare|funcdeclare;
-//-----------Declare variable------------// Var x,y,z = 1,2,3 Var x,y=1,z;
+//-----------Declare variable------------//
 vardeclare: VAR COLON varlist SEMI ;
 varlist: varinit (COMMA varinit)* ;
 varinit: var (ASSIGN valuelist)*;
@@ -83,6 +83,7 @@ exp6: exp6 (LSB exp RSB)+ |exp7;
 exp7: ID LPAREN (exp (COMMA exp)*)? RPAREN|exp8;
 exp8: LPAREN exp RPAREN|operand;
 operand: litlist|ID;
+
 
     
 

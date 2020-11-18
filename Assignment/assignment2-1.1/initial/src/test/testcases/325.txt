@@ -1,0 +1,12 @@
+
+                Function: foo
+                        Body:
+                            For (x = 1+a, x <= 100, a+a) Do
+                                Var: y;
+                                Var: z = 1;
+                                Var: x[1][2];
+                                print(x,y,z);
+                                y = 2 + z;
+                            EndFor.
+                        EndBody.
+                

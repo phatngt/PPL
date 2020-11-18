@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(foo)[],([][Assign(Id(a),UnaryOp(-,ArrayCell(Id(b),[IntLiteral(1)]))),Assign(Id(b),UnaryOp(-.,ArrayCell(Id(c),[IntLiteral(1)])))]))])

@@ -1,0 +1,13 @@
+
+                Var: x,y,z;
+                Var: t = 1, m = "abc";
+                Function: foo
+                        Parameter: a,b,c
+                        Body:
+                            Var: a = 10, b = 0xA,c = 0o16;
+                            If x == 0 Then print(a);
+                            ElseIf x != 0 Then print(b);
+                            Else print(c);
+                            EndIf.
+                        EndBody.
+                

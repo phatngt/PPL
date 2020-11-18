@@ -1,0 +1,17 @@
+
+                Var: x,y,z;
+                Var: t = 1, m = "abc";
+                Function: foo
+                        Parameter: a,b,c
+                        Body:
+                            While x <= 10 Do
+                            EndWhile.
+                        EndBody.
+                Function: main
+                        Parameter: a,b,c
+                        Body:
+                            Do
+                            While x < 10
+                            EndDo.
+                        EndBody.
+                

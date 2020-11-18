@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(foo)[],([][Assign(ArrayCell(BinaryOp(>,Id(a),IntLiteral(1)),[BinaryOp(+,IntLiteral(1),ArrayCell(BinaryOp(==,Id(a),IntLiteral(1)),[BinaryOp(+,Id(b),ArrayCell(CallExpr(Id(c),[IntLiteral(1),IntLiteral(2)]),[BinaryOp(+,Id(a),IntLiteral(8))]))]))]),IntLiteral(1))]))])

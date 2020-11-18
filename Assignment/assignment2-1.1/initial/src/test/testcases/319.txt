@@ -1,0 +1,12 @@
+
+                Function: foo
+                        Body:
+                            If a > 0 Then
+                                Var: x = 1; 
+                                x = x +1;
+                            ElseIf b < 0 Then
+                                Var: y = 1;
+                                y = y+1;
+                            EndIf.
+                        EndBody.
+                

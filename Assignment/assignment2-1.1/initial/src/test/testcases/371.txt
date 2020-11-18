@@ -1,0 +1,15 @@
+
+                Var: x,y,z;
+                Function: foo
+                        Body:
+                        Return foo;
+                        EndBody.
+                Function: main
+                        Body:
+                        Return main;
+                        EndBody.
+                Function: abc
+                        Body:
+                        abc = main();
+                        EndBody.
+                

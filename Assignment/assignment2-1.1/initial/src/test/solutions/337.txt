@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(foo)[],([][Return(Id(a))])),FuncDecl(Id(main)[],([][Assign(Id(a),CallExpr(Id(foo),[])),Return(BooleanLiteral(true))]))])

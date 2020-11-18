@@ -1,0 +1,6 @@
+
+                Function: foo
+                        Body:
+                            print(a+b,a[1][b+foo()]);
+                        EndBody.
+                

@@ -1,0 +1,13 @@
+
+                Function: foo
+                        Body:
+                            Return a;
+                        EndBody.
+                Function: main
+                        Body:
+                            Var:z = 2;
+                            Return z;
+                            a = foo();
+                            Return True;
+                        EndBody.
+                

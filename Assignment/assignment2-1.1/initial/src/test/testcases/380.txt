@@ -1,0 +1,9 @@
+
+        Function: doST
+            Parameter: n, m
+            Body:
+                Var: a, b;
+                n[a][b] = m * a \ 6 + 3;
+                m = n[2] && b;
+                Continue;
+            EndBody.

@@ -1,0 +1,12 @@
+
+        Function: main
+            Body:
+                While x < 10 Do
+                    Do 
+                        While y > 10 Do
+                            y = y + 1;
+                        EndWhile.
+                    While x < 100
+                    EndDo.
+                EndWhile.
+            EndBody.

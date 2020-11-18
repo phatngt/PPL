@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(foo)[],([][Dowhile([VarDecl(Id(x)),VarDecl(Id(y)),VarDecl(Id(z)),VarDecl(Id(t),FloatLiteral(12.2)),VarDecl(Id(d),BooleanLiteral(true)),VarDecl(Id(blabla),StringLiteral(haha))],[CallStmt(Id(print),[Id(x),Id(y),Id(z)]),Assign(Id(x),BinaryOp(+,CallExpr(Id(func),[Id(x)]),IntLiteral(1)))],BinaryOp(>,Id(x),IntLiteral(10)))]))])

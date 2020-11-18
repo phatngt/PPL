@@ -1,0 +1,1 @@
+Program([VarDecl(Id(a)),VarDecl(Id(b)),FuncDecl(Id(doST)[VarDecl(Id(n))],([][Dowhile([],[Assign(Id(m),BinaryOp(+,Id(m),IntLiteral(1))),Assign(Id(a),CallExpr(Id(doST),[Id(b)])),Continue()],BinaryOp(<,Id(n),IntLiteral(4)))]))])

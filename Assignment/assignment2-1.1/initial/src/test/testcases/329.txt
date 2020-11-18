@@ -1,0 +1,17 @@
+
+                Function: foo
+                        Body:
+                            While x < 1 Do
+                                Var: x,y,z=1;
+                                Var: m,n,t;
+                                print(x);
+                                x = x+1;
+                                While y > 10 Do
+                                    Var: x = True, y[1][2] = {{1,2},{"abc","xyz"}};
+                                    Var: a,b,c;
+                                    y = y-1;
+                                    print(y,x,q);
+                                EndWhile.
+                            EndWhile.
+                        EndBody.
+                

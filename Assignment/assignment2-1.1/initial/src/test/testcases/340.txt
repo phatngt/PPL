@@ -1,0 +1,12 @@
+
+                Function: foo
+                        Body:
+                            For (x = 1, x < 100, 1) Do
+                                If x % 2 == 0 Then
+                                    Continue;
+                                Else
+                                    print(x);
+                                EndIf.
+                            EndFor.
+                        EndBody.
+                

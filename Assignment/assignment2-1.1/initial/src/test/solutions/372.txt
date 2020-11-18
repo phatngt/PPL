@@ -1,0 +1,1 @@
+Program([VarDecl(Id(x)),VarDecl(Id(y)),VarDecl(Id(z)),FuncDecl(Id(foo)[],([][If(BinaryOp(>,Id(x),IntLiteral(10)),[],[Return()])Else([],[])])),FuncDecl(Id(main)[],([][While(BooleanLiteral(true),[],[])])),FuncDecl(Id(abc)[],([VarDecl(Id(a_zZ),IntLiteral(2748)),VarDecl(Id(b_a),IntLiteral(595))][]))])

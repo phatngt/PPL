@@ -1,0 +1,15 @@
+
+        Var: a, b;
+        Function: doST
+            Parameter: n
+            Body:
+                Var: z[1] = 12.e5;
+                Do
+                    m = m + 1;
+                    b = z[1] && n;
+                    a = doST(b);
+                While
+                    (n == True) || (b > 1)
+                EndDo.
+                (b + 2)[a] = m;
+            EndBody.

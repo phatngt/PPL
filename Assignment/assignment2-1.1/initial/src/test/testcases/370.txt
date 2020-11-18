@@ -1,0 +1,13 @@
+
+                Var: x,y,z;
+                Var: t = 1, m = "abc";
+                Function: foo
+                        Body:
+                        EndBody.
+                Function: main
+                        Body:
+                        EndBody.
+                **Function: abc
+                        Body:
+                        EndBody.**
+                

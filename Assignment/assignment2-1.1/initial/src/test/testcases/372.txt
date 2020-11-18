@@ -1,0 +1,17 @@
+
+                Var: x,y,z;
+                Function: foo
+                        Body:
+                            If x > 10 Then Return;
+                            EndIf. 
+                        EndBody.
+                Function: main
+                        Body:
+                            While True Do
+                            EndWhile.
+                        EndBody.
+                Function: abc
+                        Body:
+                            Var:a_zZ = 0XABC,b_a = 0o1123;
+                        EndBody.
+                

@@ -36,7 +36,7 @@ class ASTGeneration(BKITVisitor):
 
     def visitLitlist(self,ctx:BKITParser.LitlistContext):
         if ctx.INTLIT():
-            return IntLiteral(value=int(ctx.INTLIT().getText()))
+            return IntLiteral(value=int(ctx.INTLIT().getText(),0))
         elif ctx.FLOATLIT():
             return FloatLiteral(value=float(ctx.FLOATLIT().getText()))
         elif ctx.TRUE():
@@ -64,7 +64,6 @@ class ASTGeneration(BKITVisitor):
     def visitFuncdeclare(self,ctx:BKITParser.FuncdeclareContext):   
         id = Id(ctx.ID().getText())
         lst = [self.visit(ctx.paralist()),self.visit(ctx.blockstm())] if ctx.paralist() else [[],self.visit(ctx.blockstm())]
-        print(id,lst[1])
         return FuncDecl(name=id,param=lst[0],body=lst[1])
     
     def visitParalist(self,ctx:BKITParser.ParalistContext):
@@ -76,7 +75,9 @@ class ASTGeneration(BKITVisitor):
         return self.visit(ctx.var_decl_and_stm())
     
     def visitVar_decl_and_stm(self,ctx:BKITParser.Var_decl_and_stmContext):
-        return ([self.visit(x) for x in ctx.vardeclare()],[self.visit(x) for x in ctx.stm()])
+        lstVar = [self.visit(x) for x in ctx.vardeclare()]
+        lstStm = [self.visit(x) for x in ctx.stm()]
+        return ([x for y in lstVar for x in y],lstStm)
     
     def visitStm(self,ctx:BKITParser.StmContext):
         return self.visitChildren(ctx)
@@ -103,8 +104,12 @@ class ASTGeneration(BKITVisitor):
     
     def visitIf_stm(self,ctx:BKITParser.If_stmContext):
         ifthenStmt = [(self.visit(ctx.exp(i)),self.visit(ctx.var_decl_and_stm(i))[0],self.visit(ctx.var_decl_and_stm(i))[1]) for i in range(len(ctx.exp()))]
-        elseStmttemp = [self.visit(ctx.var_decl_and_stm(i)) for i in range(len(ctx.exp()),len(ctx.var_decl_and_stm()))][0]
-        elseStmt = (elseStmttemp[0],elseStmttemp[1])
+        elseStmttemp = [self.visit(ctx.var_decl_and_stm(i)) for i in range(len(ctx.exp()),len(ctx.var_decl_and_stm()))]
+        if elseStmttemp:
+            elseStmttemp = elseStmttemp[0]
+            elseStmt = (elseStmttemp[0],elseStmttemp[1])
+        else:
+            elseStmt = ([],[])
         return If(ifthenStmt=ifthenStmt,elseStmt=elseStmt)
 
     def visitWhile_stm(self,ctx:BKITParser.While_stmContext):
@@ -121,7 +126,7 @@ class ASTGeneration(BKITVisitor):
         if ctx.exp():
             exp = self.visit(ctx.exp())
             return Return(expr=exp)
-        return None
+        return Return(expr=None)
     
     def visitContinue_stm(self,ctx:BKITParser.Continue_stmContext):
         return Continue()
@@ -131,7 +136,6 @@ class ASTGeneration(BKITVisitor):
 
     def visitCallfunc_stm(self,ctx:BKITParser.Callfunc_stmContext):
         call_func = self.visit(ctx.call_func())
-        print(call_func)
         id = call_func[0]
         lstexp = call_func[1]
         return CallStmt(method=id,param=lstexp)
@@ -139,7 +143,7 @@ class ASTGeneration(BKITVisitor):
     #Visit temp Parser
     def visitCall_func(self,ctx:BKITParser.Call_funcContext):
         lstexp = [self.visit(x) for x in ctx.exp()] if ctx.exp() else []
-        id = ctx.ID().getText()
+        id = Id(ctx.ID().getText())
         return (id,lstexp)
     
     #Visit expression block
@@ -243,8 +247,8 @@ class ASTGeneration(BKITVisitor):
     def visitExp7(self,ctx:BKITParser.Exp7Context):
         if ctx.ID() and ctx.LPAREN():
             lstexp = [self.visit(x) for x in ctx.exp()] if ctx.exp() else []
-            id = ctx.ID().getText()
-            return CallStmt(method=id,param=lstexp)
+            id = Id(ctx.ID().getText())
+            return CallExpr(method=id,param=lstexp)
         return self.visit(ctx.exp8())
 
     def visitExp8(self,ctx:BKITParser.Exp8Context):

@@ -1,1 +1,1 @@
-Program([VarDecl(Id(x)),VarDecl(Id(y)),VarDecl(Id(z)),FuncDecl(Id(foo)[],([[VarDecl(variable=Id(name='x'), varDimen=[], varInit=None), VarDecl(variable=Id(name='y'), varDimen=[], varInit=None), VarDecl(variable=Id(name='z'), varDimen=[], varInit=None)]][]))])
+Program([VarDecl(Id(x)),VarDecl(Id(y)),VarDecl(Id(z)),FuncDecl(Id(foo)[],([VarDecl(Id(x)),VarDecl(Id(y)),VarDecl(Id(z))][]))])

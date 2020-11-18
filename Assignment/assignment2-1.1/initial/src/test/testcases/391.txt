@@ -1,0 +1,8 @@
+
+        Function: doST
+            Parameter: i, n
+            Body:
+                For (i = 0, i < 5, 1) Do
+                    n = n \ 2;
+                EndFor.
+            EndBody.

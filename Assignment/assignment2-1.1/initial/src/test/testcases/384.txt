@@ -1,0 +1,13 @@
+
+            Var: a, b;
+            Function: doST
+                Parameter: n
+                Body:
+                    Do 
+                        m = m + 1;
+                        a = doST(b);
+                    While
+                        n == True
+                    EndDo.
+                    (b + 2)[a] = m;
+                EndBody.

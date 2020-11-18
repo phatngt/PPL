@@ -1,0 +1,11 @@
+
+        Function: main
+            Body:
+                For (x = 1,x < 100,1) Do
+                    For (y = x , y < 1000, 2) Do
+                        For ( z = y,z < 10000, 3) Do
+                            print(10000000);
+                        EndFor.
+                    EndFor.
+                EndFor.
+            EndBody.

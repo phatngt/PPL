@@ -1,0 +1,11 @@
+
+                Function: foo
+                        Body:
+                            Return a;
+                        EndBody.
+                Function: main
+                        Body:
+                            a = foo();
+                            Return True;
+                        EndBody.
+                

@@ -1,0 +1,16 @@
+
+                Var: x = "include<stdio.h>";
+                Function: main
+                    Body:
+                        cout("Moi ban nhap ten: ");
+                        name = cin();
+                        cout("Ten cua ban la:",name);
+                        cout("Ban thay tui hay khong, tui biet duoc ten ban luon day nhe");
+                        cout("Moi ban nhap tai khoan ngan hang cua ban");
+                        acount = cin();
+                        cout("Moi ban nhap mat khau ngan hang cua ban");
+                        pswd = cin();
+                        cout("Ban da bi hawchs, ha ha :))");
+                        Return 1;
+                    EndBody.
+        

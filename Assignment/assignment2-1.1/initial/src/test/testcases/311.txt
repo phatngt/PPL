@@ -1,6 +1,4 @@
  Function: foo
                         Body:
-                            Do x = x + 1;
-                            While x < 10
-                            EndDo.
+                            a = 1;
                         EndBody. 

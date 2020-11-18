@@ -1,0 +1,18 @@
+
+        Var: a, b, c;
+        Var: x = {1.2,2.3,3.4};
+        Function: doST
+            Parameter: n
+            Body:
+                Var: m = 1;
+                Var: n = "abc";
+                While n < 4 Do
+                    m = m + 1;
+                    n = n * 2;
+                    Continue;
+                EndWhile.
+                While m > 4 Do
+                    m = m - 3;
+                    x = x + doST(b);
+                EndWhile.
+            EndBody.

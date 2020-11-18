@@ -1,0 +1,11 @@
+
+                Function: foo
+                        Body:
+                            Do 
+                                Var: x,y,z;
+                                Var: t=12.2,d=True,blabla="haha";
+                                print(x,y,z);
+                            While x > 10
+                            EndDo.
+                        EndBody.
+                

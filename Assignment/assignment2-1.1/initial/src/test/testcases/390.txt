@@ -1,0 +1,7 @@
+
+        Function: main
+            Body:
+                If ((x == 1)&&(y!=2))||(z =/= 2.0)||(t >. 100.1e2) Then
+                    donotst(haha);
+                EndIf.
+            EndBody.
