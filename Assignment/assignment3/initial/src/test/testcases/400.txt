@@ -1,4 +1,2 @@
-Function: main
-                   Body: 
-                        foo();
-                   EndBody.
+ Var: t;
+                

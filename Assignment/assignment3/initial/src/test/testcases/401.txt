@@ -1,4 +1,9 @@
-Function: main  
-                   Body:
-                        printStrLn();
+ Var: t;
+                    Var: x = 11;
+                    Function: main
+                    Body:
+                        For(x = 1, x >20, x + 1) Do
+                            Var: w,z;
+                            Var: a,b,c;
+                        EndFor.
                     EndBody.
