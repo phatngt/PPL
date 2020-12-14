@@ -38,7 +38,8 @@ class Id(LHS):
     name : str
 
     def __str__(self):
-        return  "Id(" + self.name + ")" 
+        # return  "Id(" + self.name + ")"
+        return "Id(" + '"'+self.name + '"' + ")"
 
     def accept(self, v, param):
         return v.visitId(self, param)
@@ -61,10 +62,12 @@ class VarDecl(Decl):
     varInit  : Literal   # null if no initial
 
     def __str__(self):
-        initial = (","+str(self.varInit)) if self.varInit else ""
-        dimen = (","+printlist(self.varDimen)) if self.varDimen else ""
+        # initial = (","+str(self.varInit)) if self.varInit else ""
+        # dimen = (","+printlist(self.varDimen)) if self.varDimen else "" 
+        # return "VarDecl(" + str(self.variable) + dimen + initial + ")"
+        initial = (","+str(self.varInit)) if self.varInit else ",None"
+        dimen = (","+printlist(self.varDimen)) if self.varDimen else ",[]"
         return "VarDecl(" + str(self.variable) + dimen + initial + ")"
-       
 
     def accept(self, v, param):
         return v.visitVarDecl(self, param)
@@ -205,8 +208,48 @@ class If(Stmt):
     elseStmt:Tuple[List[VarDecl],List[Stmt]] # for Else branch, empty list if no Else
 
     def __str__(self):
-        ifstmt = printlist(self.ifthenStmt,printIfThenStmt,"If(",")ElseIf(",")")
-        elsestmt = ("Else("+printListStmt(self.elseStmt)+")") if self.elseStmt else ""
+        # ifstmt = printlist(self.ifthenStmt,printIfThenStmt,"If(",")ElseIf(",")")
+        # elsestmt = ("Else("+printListStmt(self.elseStmt)+")") if self.elseStmt else ""
+        ifstmt = "If(["
+        ifstmt_temp = ""
+        for index,ifthenstmt in enumerate(self.ifthenStmt):
+            expr = "(" + str(ifthenstmt[0]) + ","
+            lst_var = "["
+            for idx,var_decl in enumerate(ifthenstmt[1]):
+                if idx != len(ifthenstmt[1])-1:
+                    lst_var += str(var_decl) + ","
+                else:
+                    lst_var += str(var_decl)
+            lst_var += "],"
+            lst_stmt = "["
+            for idx,stmt in enumerate(ifthenstmt[2]):
+                if idx != len(ifthenstmt[2])-1:
+                    lst_stmt += str(stmt) + ","
+                else:
+                    lst_stmt += str(stmt)
+            lst_stmt += "])"
+            if index != 0:
+                ifstmt_temp += "," + expr + lst_var + lst_stmt
+            else:
+                ifstmt_temp += expr + lst_var + lst_stmt
+        ifstmt += ifstmt_temp + "],"
+        elsestmt = "("
+        lst_var = "["
+        for idx,var_decl in enumerate(self.elseStmt[0]):
+            if idx != len(self.elseStmt[0])-1:
+                lst_var += str(var_decl) + ','
+            else:
+                lst_var += str(var_decl)
+            
+        lst_var += "],"
+        lst_stmt = "["
+        for idx,stmt in enumerate(self.elseStmt[1]):
+            if idx != len(self.elseStmt[1])-1:
+                lst_stmt += str(stmt) + ','
+            else:
+                lst_stmt += str(stmt)
+        lst_stmt += "]"
+        elsestmt += lst_var+lst_stmt + "))"
         return ifstmt + elsestmt
 
     def accept(self, v, param):

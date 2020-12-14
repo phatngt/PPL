@@ -1,0 +1,14 @@
+ Var: z;
+                    Function: foo
+                    Parameter: x,y
+                    Body:
+                    EndBody.
+                    Function: main
+                    Parameter: x,y
+                    Body:
+                        If x > 1 Then
+                            Var: t;
+                            y = t;
+                        EndIf.
+                    EndBody.
+                    

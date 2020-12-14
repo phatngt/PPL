@@ -1,0 +1,13 @@
+Function: foo
+                    Parameter: x,y
+                    Body:
+                    EndBody.
+                    Function: main
+                    Parameter: x,y,z
+                    Body:
+                        x = 1;
+                        If x Then
+                            Var: t;
+                        EndIf.
+                    EndBody.
+                    

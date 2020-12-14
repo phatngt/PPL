@@ -1,0 +1,14 @@
+Function: foo
+                    Parameter: x,y
+                    Body:
+                    EndBody.
+                    Function: main
+                    Parameter: x,y,z
+                    Body:
+                        x = 1;
+                        While y Do
+                            Var: t;
+                            t = z;
+                        EndWhile.
+                    EndBody.
+                    

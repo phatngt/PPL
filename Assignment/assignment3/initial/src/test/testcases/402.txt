@@ -1,4 +1,6 @@
-Function: main 
+ Var: x,y;
+                    Var: y;
+                    Function: main
+                    Parameter: x,y,z
                     Body:
-                        printStrLn(read(4));
                     EndBody.

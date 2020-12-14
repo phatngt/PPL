@@ -1,0 +1,14 @@
+Function: foo
+                    Parameter: x,y
+                    Body:
+                    EndBody.
+                    Function: main
+                    Parameter: x,y
+                    Body:
+                        x = 1;
+                        For(x =1, x < 1, 1) Do
+                            Var: t;
+                            t = y;
+                        EndFor.
+                    EndBody.
+                    

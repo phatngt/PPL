@@ -1,0 +1,11 @@
+ Var: x = True;
+                    Var: y = "abc";
+                    Var: z = 1.2;
+                    Var: w = 123;
+                    Var: t[1] = {1};
+                    Function: main
+                    Parameter: x
+                    Body:
+                        x = y;
+                        x = z;
+                    EndBody.
