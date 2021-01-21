@@ -1,0 +1,14 @@
+
+        Var: x;
+        Function: string
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: t
+            Body:
+                Var:x = 1.2,y;
+                y = int_of_float(x);
+                t = x +. y;
+            EndBody.
+        

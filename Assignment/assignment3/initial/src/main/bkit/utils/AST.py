@@ -104,7 +104,7 @@ class BinaryOp(Expr):
     right:Expr
 
     def __str__(self):
-        return "BinaryOp(" + self.op + "," + str(self.left) + "," + str(self.right) + ")"
+        return "BinaryOp(" + '"' + self.op + '"'+ "," + str(self.left) + "," + str(self.right) + ")"
 
     def accept(self, v, param):
         return v.visitBinaryOp(self, param)
@@ -114,7 +114,7 @@ class UnaryOp(Expr):
     body:Expr
 
     def __str__(self):
-        return "UnaryOp(" + self.op + "," + str(self.body) + ")"
+        return "UnaryOp("+ '"'+ self.op + '"'+ "," + str(self.body) + ")"
 
     def accept(self, v, param):
         return v.visitUnaryOp(self, param)
@@ -156,7 +156,7 @@ class StringLiteral(Literal):
     value:str
 
     def __str__(self):
-        return "StringLiteral(" + self.value + ")"
+        return "StringLiteral(" +'"' + self.value + '"' + ")"
 
     def accept(self, v, param):
         return v.visitStringLiteral(self, param)

@@ -1,0 +1,9 @@
+
+        Var: y;
+        Function: main
+            Parameter: t
+            Body:
+                Var:x,a;
+                main(x);
+            EndBody.
+        

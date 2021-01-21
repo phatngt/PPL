@@ -1,0 +1,12 @@
+
+                Function: main
+                Parameter: x
+                Body:
+                    Var: y;
+                    Do
+                        Var: x;
+                        x = y;
+                    While y+1
+                    EndDo.
+                EndBody.
+                

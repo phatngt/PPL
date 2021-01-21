@@ -1,0 +1,14 @@
+
+        Var: t = 6;
+        Var: m = 0;
+        Function: main
+            Body:
+                Do 
+                    Var: z = "a";
+                    m = m + 1;
+                    z = m - z;
+                While
+                    t < m
+                EndDo.
+            EndBody.
+        

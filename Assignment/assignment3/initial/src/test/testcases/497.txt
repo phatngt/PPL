@@ -1,0 +1,19 @@
+
+        Var: x;
+        Function: string
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: a
+            Body:
+                Var:x = "True",y, t = 1;
+                If bool_of_string(x) Then
+                    printLn();
+                    y = float_of_string("abc") +. float_to_int(1);
+                    x = read();
+                    x = string_of_float(y);
+                    x = True;
+                EndIf.
+            EndBody.
+        

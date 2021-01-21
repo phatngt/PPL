@@ -1,0 +1,17 @@
+
+        Var: t = 1.2;
+        Var: n[2] = {1,2};
+        Function: main
+            Parameter: x, y
+            Body:
+                Var: t = True;
+                x = 1;
+                If t Then
+                    Var: x;
+                    x = 1; 
+                ElseIf n[1] Then 
+                    x = 2;
+                Else x = 3;
+                EndIf.
+            EndBody.
+        

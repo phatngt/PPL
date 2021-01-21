@@ -1,0 +1,15 @@
+
+        Var: t = 1.2;
+        Function: main
+            Parameter: x, y
+            Body:
+                Var: t = True;
+                If True Then
+                    Var: t = 4.3;
+                    If True Then
+                        t = 3.4;
+                    EndIf.
+                EndIf.
+                t = 1.9;
+            EndBody.
+        

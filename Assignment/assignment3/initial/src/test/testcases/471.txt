@@ -1,0 +1,10 @@
+
+        Var: y;
+        Function: main
+            Parameter: a
+            Body:
+                Var: x;
+                If main(x) Then
+                EndIf.
+            EndBody.
+        

@@ -1,0 +1,8 @@
+
+        Var: int_of_float;
+        Function: main
+            Parameter: t
+            Body:
+                
+            EndBody.
+        

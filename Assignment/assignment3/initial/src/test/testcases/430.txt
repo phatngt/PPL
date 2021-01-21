@@ -1,0 +1,11 @@
+
+                Function: main
+                Parameter: x
+                Body:
+                    Var: y;
+                    For(x = 1, x < 1, 1.1) Do
+                        Var: t;
+                        t = x;
+                    EndFor.
+                EndBody.
+                

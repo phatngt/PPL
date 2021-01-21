@@ -1,1 +1,1 @@
-Type Cannot Be Inferred: Assign(Id(t),Id(z))
+Type Cannot Be Inferred: Assign(Id("t"),Id("z"))

@@ -1,0 +1,10 @@
+
+        Var: y;
+        Function: main
+            Parameter: t
+            Body:
+                Var:x,a;
+                While main(x) Do
+                EndWhile.
+            EndBody.
+        

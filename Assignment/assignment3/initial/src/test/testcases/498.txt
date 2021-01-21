@@ -1,0 +1,18 @@
+
+        Var: var;
+        Function: string
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: a
+            Body:
+                Var:x = "True",y, t = 1;
+                If bool_of_string(x) Then
+                    For(t = 2, t < 10, 2) Do
+                        var = 1;
+                        var = "String";
+                    EndFor.
+                EndIf.
+            EndBody.
+        

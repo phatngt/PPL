@@ -2,8 +2,8 @@
                 Function: main
                 Parameter: x
                 Body:
-
-                    For(x = 1, x < 10, 1) Do
+                    Var: y=1.2;
+                    For(x = y, x < 10, 1) Do
                         Var: t;
                         t = x;
                     EndFor.

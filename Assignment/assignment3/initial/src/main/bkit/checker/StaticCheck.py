@@ -51,7 +51,7 @@ class StaticChecker(BaseVisitor):
         self.ast = ast
         self.global_envi = [
 Symbol("int_of_float",MType([FloatType()],IntType())),
-Symbol("float_of_int",MType([IntType()],FloatType())),
+Symbol("float_to_int",MType([IntType()],FloatType())),
 Symbol("int_of_string",MType([StringType()],IntType())),
 Symbol("string_of_int",MType([IntType()],StringType())),
 Symbol("float_of_string",MType([StringType()],FloatType())),
@@ -69,16 +69,17 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
 
     def visitProgram(self,ast, c):
         #Enviroment constrant of program
-        # prog_envi = c[:]
-        prog_envi = []
-
+        prog_envi = c[:]
+        # prog_envi = []
         entry_point = False
         for decl in ast.decl:
             if isinstance(decl,FuncDecl):
                 if decl.name.name == 'main':
                     entry_point = True
+            
         if not entry_point:
             raise NoEntryPoint()
+
         
         # Through the decls of program
         for decl in ast.decl:
@@ -91,10 +92,15 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
                 if not self.lookup(decl.name.name,prog_envi,lambda x: x.name) is None:
                     raise Redeclared(k=Function(),n=decl.name.name)
                 #Update global enviroment and unused function list
-                # param_type = [self.visit(param,None) for param in decl.param]
                 else:
                     prog_envi.append(Symbol(name=decl.name.name,mtype=MType(intype=[],restype=Unknown())))
-                    self.visit(decl,[prog_envi])
+                    flag_global = True
+                    self.visit(decl,([prog_envi],flag_global))
+        for decl in ast.decl:
+            if isinstance(decl,FuncDecl):
+                if not self.lookup(decl.name.name, prog_envi,lambda x:x.name) is None:
+                    flag_global  = False
+                    self.visit(decl,([prog_envi],flag_global))
 
 
     def visitVarDecl(self,ast,c):
@@ -111,40 +117,43 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
                 array_dimen = ast.varDimen
                 return Symbol(name=ast.variable.name,mtype=MType(intype=[],restype=ArrayType(dimen=array_dimen,eletype=Unknown())))
             if ast.varDimen and ast.varInit:
-                array_type,dimen = self.visit(ast.varInit,c)
-                if ast.varDimen == dimen:
-                    return Symbol(name=ast.variable.name,mtype=MType(intype=[],restype=ArrayType(dimen=dimen,eletype=array_type)))
-                else:
-                    raise InvalidArrayLiteral(ast.varInit)
+                arr_typ = self.visit(ast.varInit,c)
+                return Symbol(name=ast.variable.name,mtype=MType(intype=[],restype=arr_typ))
         else:
             raise Redeclared(k=Variable(),n=ast.variable.name)
     
     def visitFuncDecl(self,ast,c):
         #Set up variable reference follow to: [[recently],[parent],[2nd parent(grand-dad)],[3th...] ]
+        global_envi = c[0]
+        flag_global = c[1]
         #Create lst of the local variable
         local_envi = []
         #Create lst of the parameter variable
         lst_param = []
-        if ast.param:
-            for param in ast.param:
-                #Check redeclare parameter
-                if self.lookup(param.variable.name,lst_param,lambda x: x.name) is None:
-                    lst_param.append(self.visit(param,lst_param))
-                else:
-                    raise Redeclared(k=Parameter(),n=param.variable.name)
-        if lst_param != []:
-            # Add lst parameter into function are visiting
-            self.add_parafunc(ast.name.name,lst_param,c,lambda x: x.name)
-            #Update local enviroment
-            local_envi += lst_param
-        if ast.body[0]:
-            # Visit all variable is declared in the var-decl block
-            for var_decl in ast.body[0]:
-                local_envi += [self.visit(var_decl,local_envi)] 
+        if flag_global:
+            if ast.param:
+                for param in ast.param:
+                    #Check redeclare parameter
+                    if self.lookup(param.variable.name,lst_param,lambda x: x.name) is None:
+                        lst_param.append(self.visit(param,lst_param))
+                    else:
+                        raise Redeclared(k=Parameter(),n=param.variable.name)
+            if lst_param != []:
+                # Add lst parameter into function are visiting
+                self.add_parafunc(ast.name.name,lst_param,[global_envi[-1]],lambda x: x.name)
+                #Update local enviroment
+                local_envi += lst_param
+        else:
+            func = self.lookup(ast.name.name,global_envi[-1],lambda x: x.name)
+            local_envi += func.mtype.intype
+            if ast.body[0]:
+                # Visit all variable is declared in the var-decl block
+                for var_decl in ast.body[0]:
+                    local_envi += [self.visit(var_decl,local_envi)] 
 
-        if ast.body[1]:
-            for stm in ast.body[1]:
-                self.visit(stm,([local_envi]+c,ast.name.name))
+            if ast.body[1]:
+                for stm in ast.body[1]:
+                    self.visit(stm,([local_envi]+global_envi,ast.name.name))
 
     def visitAssign(self,ast,c):
         self.ast = ast
@@ -155,32 +164,50 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
             name_lhs = ast.lhs.name
             # Get symbol lhs
             lhs = self.visit(ast.lhs,global_envi)
+            type_lhs = lhs
+            if isinstance(lhs,Symbol):
+                type_lhs = lhs.mtype.restype
             # Get symbol rhs
             rhs = self.visit(ast.rhs,global_envi)
-            #Get type of the lhs(Mtype)
-            type_lhs = lhs.mtype.restype
             # Get type of the rhs(Symbol or type of Literals)
             type_rhs = rhs
             # If the rhs is a Mtype, re-get type of rhs and create name_rhs is the name of rhs
             if isinstance(rhs,Symbol):
                 type_rhs = rhs.mtype.restype
-                name_rhs = ast.rhs.name
+                name_rhs = rhs.name
+            if isinstance(type_rhs,ArrayType):
+                type_rhs = type_rhs.eletype
         # In this case the lhs is the arraycell
         elif isinstance(ast.lhs, ArrayCell):
             #Get name of the lhs which it is id 
-            if isinstance(ast.lhs,Id):
-                name_lhs = ast.lhs.name
+            if isinstance(ast.lhs.arr,Id):
+                name_lhs = ast.lhs.arr.name
             #Get type of the lhs
-            type_lhs = self.visit(ast.lhs,global_envi)
+            lhs = self.visit(ast.lhs,global_envi)
+            if isinstance(lhs,Symbol):
+                type_lhs = lhs.mtype.restype
+                if isinstance(type_lhs,ArrayType):
+                    type_lhs = type_lhs.eletype
             #Get type of the rhs
-            type_rhs = self.visit(ast.rhs,global_envi)
-        
+            rhs = self.visit(ast.rhs,global_envi)
+            if isinstance(rhs,Symbol):
+                type_rhs = rhs.mtype.restype
+                name_rhs = rhs.name
+            else:
+                type_rhs = rhs
+            if isinstance(type_rhs,ArrayType):
+                type_rhs = type_rhs.eletype
+
+            
+            
         """ Check type of the lsh and type of rhs"""
         #If the lhs and rhs not are the same type
-        if not isinstance(type_lhs,VoidType):
+        if not (isinstance(type_lhs,VoidType) or isinstance(type_rhs,VoidType)):
             if not isinstance(type_lhs,type(type_rhs)):
+                if (isinstance(type_lhs,ArrayType) and not isinstance(type_rhs,ArrayType)) or (not isinstance(type_lhs,ArrayType) and isinstance(type_rhs,ArrayType)):
+                    raise TypeMismatchInStatement(ast)
                 # If lhs is unknow type and rhs not is void type, inferer type for lhs
-                if isinstance(type_lhs,Unknown):
+                elif isinstance(type_lhs,Unknown):
                     self.addtype(name_lhs,type_rhs,global_envi,lambda x: x.name)
                 # If rhs is unknow type, and type of the lhs is resolved type, inferer type for rhs
                 elif isinstance(type_rhs,Unknown):
@@ -197,6 +224,8 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
             raise TypeMismatchInStatement(ast)
         
         
+        
+        
     """ Visit the statments"""
     #Visit if statement
     def visitIf(self,ast,c):
@@ -205,13 +234,15 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         local_envi = []
         for ifthenstm in ast.ifthenStmt:
             expr = self.visit(ifthenstm[0],global_envi)
+            type_expr = expr
             if isinstance(expr,Symbol):
                 if isinstance(expr.mtype.restype,Unknown):
-                    self.addtype(expr.name,BoolType,global_envi,lambda x:x.name)
-                    expr = BoolType()
+                    self.addtype(expr.name,BoolType(),global_envi,lambda x:x.name)
+                    type_expr = BoolType()
                 else:
-                    expr = expr.mtype.restype
-            if isinstance(expr,BoolType):
+                    type_expr = expr.mtype.restype
+                    
+            if isinstance(type_expr,BoolType):
                 for var_decl in ifthenstm[1]:
                     local_envi.append(self.visit(var_decl,local_envi))
                 for stm in ifthenstm[2]:
@@ -237,15 +268,31 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
             else:
                 raise TypeMismatchInStatement(ast)
         if isinstance(type_idx1,IntType):
-            type_expr1 = self.visit(ast.expr1,global_envi)
+            expr1 = self.visit(ast.expr1,global_envi)
+            type_expr1 = expr1
+            if isinstance(expr1,Symbol):
+                type_expr1 = expr1.mtype.restype
+                if isinstance(type_expr1,Unknown):
+                    self.addtype(expr1.name,IntType(),global_envi,lambda x: x.name)
+                    type_expr1 = IntType()
             if not isinstance(type_expr1,IntType):
-                print(type_expr1)
                 raise TypeMismatchInStatement(ast)
-            type_expr2 = self.visit(ast.expr2,global_envi)
-            
+            expr2 = self.visit(ast.expr2,global_envi)
+            type_expr2 = expr2
+            if isinstance(expr2,Symbol):
+                type_expr2 = expr2.mtype.restype
+                if isinstance(type_expr2,Unknown):
+                    self.addtype(expr2.name,BoolType(),global_envi,lambda x: x.name)
+                    type_expr2 = BoolType()
             if not isinstance(type_expr2,BoolType):
                 raise TypeMismatchInStatement(ast)
-            type_expr3 = self.visit(ast.expr3,global_envi)
+            expr3 = self.visit(ast.expr3,global_envi)
+            type_expr3 = expr3
+            if isinstance(expr3,Symbol):
+                type_expr3 = expr3.mtype.restype
+                if isinstance(type_expr3,Unknown):
+                    self.addtype(expr3.name,IntType(),global_envi,lambda x: x.name)
+                    type_expr3 = IntType()
             if not isinstance(type_expr3,IntType):
                 raise TypeMismatchInStatement(ast)
         
@@ -282,7 +329,7 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         type_expr = expr
         if isinstance(expr,Symbol):
             if isinstance(expr.mtype.restype,Unknown):
-                self.addtype(expr.name,BoolType,global_envi,lambda x:x.name)
+                self.addtype(expr.name,BoolType(),global_envi,lambda x:x.name)
                 type_expr = BoolType()
             else:
                 type_expr = expr.mtype.restype
@@ -325,7 +372,7 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
                 raise TypeCannotBeInferred(ast)
         """ Check return of the call-statement"""
         if isinstance(method_restype,Unknown):
-            self.addtype(ast.method.name,VoidType,[global_envi[-1]],lambda x: x.name)
+            self.addtype(ast.method.name,VoidType(),[global_envi[-1]],lambda x: x.name)
         elif not isinstance(method_restype,VoidType):
             raise TypeMismatchInStatement(ast)
     #TODO: Implement return stmt
@@ -334,13 +381,16 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         global_envi = c[0]
         typ_method = self.lookup(method,global_envi[-1],lambda x: x.name)
         if ast.expr:
-            type_expr = self.visit(ast.expr,global_envi)
-            if isinstance(typ_method.mtype.restype,Unknown):
+            expr = self.visit(ast.expr,global_envi)
+            type_expr = expr.mtype.restype if isinstance(expr,Symbol) else expr
+            if isinstance(typ_method.mtype.restype,Unknown) and not isinstance(type_expr,Unknown):
                 self.addtype(method,type_expr,[global_envi[-1]],lambda x: x.name)
+            elif isinstance(typ_method.mtype.restype,Unknown) and isinstance(type_expr,Unknown):
+                raise TypeCannotBeInferred(ast)
             else:
                 raise TypeMismatchInStatement(ast)
         else:
-            self.addtype(method,VoidType,[global_envi[-1]],lambda x: x.name)
+            self.addtype(method,VoidType(),[global_envi[-1]],lambda x: x.name)
 
     def visitContinue(self,ast,c):
         pass
@@ -354,7 +404,15 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         right = self.visit(ast.right,c)
         left_type = left.mtype.restype if isinstance(left,Symbol) else left
         right_type = right.mtype.restype if isinstance(right,Symbol) else right
+        if isinstance(left_type,ArrayType) and isinstance(left,Symbol):
+            left_type = left_type.eletype
+        if isinstance(right_type,ArrayType) and isinstance(right,Symbol):
+            right_type = right_type.eletype
         def checkType(acceptType): 
+            if not isinstance(left_type,acceptType) and not isinstance(left_type,Unknown):
+                raise TypeMismatchInExpression(ast)
+            elif not isinstance(right_type,acceptType) and not isinstance(right_type,Unknown):
+                raise TypeMismatchInExpression(ast)
             if not isinstance(left_type,Unknown) and not isinstance(right_type,Unknown):
                 if not (isinstance(left_type,acceptType) and isinstance(right_type,acceptType)):
                     raise TypeMismatchInExpression(ast)
@@ -367,23 +425,23 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
 
         if op in ["+","-","*","\\","%"]:
             checkType(IntType)
-            infferedType(IntType)
+            infferedType(IntType())
             return IntType()
         elif op in ["+.","-.","*.","\\."]:
             checkType(FloatType)
-            infferedType(FloatType)
+            infferedType(FloatType())
             return FloatType()
         elif op in ["&&","||"]:
             checkType(BoolType)
-            infferedType(BoolType)
+            infferedType(BoolType())
             return BoolType()
         elif op in ["==","!=","<",">","<=",">="]:
             checkType(IntType)
-            infferedType(IntType)
+            infferedType(IntType())
             return BoolType()
         elif op in ["=/=","<.",">.","<=.",">=."]:
             checkType(FloatType)
-            infferedType(FloatType)
+            infferedType(FloatType())
             return BoolType()
 
     def visitUnaryOp(self,ast,c):
@@ -392,6 +450,8 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         body_type = body
         if isinstance(body,Symbol):
             body_type = body.mtype.restype
+        if isinstance(body_type,ArrayType):
+            body_type = body_type.eletype
         def checkType(acceptType):
             if not isinstance(body_type,Unknown):
                 if not isinstance(body_type,acceptType):
@@ -401,15 +461,15 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
                 self.addtype(body.name,type_inffer,c,lambda x: x.name)
         if op == "-":
             checkType(IntType)
-            infferedType(IntType)
+            infferedType(IntType())
             return IntType()
         if op == "-.":
             checkType(FloatType)
-            infferedType(FloatType)
+            infferedType(FloatType())
             return FloatType()
         if op == "!":
             checkType(BoolType)
-            infferedType(BoolType)
+            infferedType(BoolType())
             return BoolType()
         
     """ Visit identifier"""
@@ -426,39 +486,54 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
     """Visit array cell """
 
     def visitArrayCell(self,ast,c):
-        type_expr = self.visit(ast.arr,c)
-        if isinstance(type_expr,ArrayType):
+        global_envi = c
+        arr_sym = self.visit(ast.arr,c)
+        type_expr = arr_sym
+        if isinstance(arr_sym,Symbol):
+            type_expr = arr_sym.mtype.restype
+        if not isinstance(type_expr,ArrayType):
             raise TypeMismatchInExpression(ast)
-        for exp in ast.idx:
-            type_exp = self.visit(exp,c)
-            if not isinstance(type_exp,IntType):
+        dimen = type_expr.dimen
+        if dimen:
+            if len(dimen) != len(ast.idx):
                 raise TypeMismatchInExpression(ast)
-        return type_exp 
+        
+        for exp in ast.idx:
+            type_idx = self.visit(exp,c)
+            if not isinstance(type_idx,IntType):
+                raise TypeMismatchInExpression(ast)
+        return arr_sym
 
     """Visit Call Expr"""
     def visitCallExpr(self,ast,c):
         global_envi = c
         method = self.lookup(ast.method.name,global_envi[-1],lambda x: x.name)
-        typ_method = method.mtype.restype
+        if method is None:
+            raise Undeclared(Function(),ast.method.name)
+        typ_method = method.mtype.restype 
         typ_param = method.mtype.intype
         #Check len between arg and param
         if len(typ_param) != len(ast.param):
             raise TypeMismatchInExpression(ast)
         for idx,arg in enumerate(ast.param):
             typ_arg = self.visit(arg,c)
+            p_type = typ_param[idx]
             if isinstance(typ_arg,Symbol):
                 typ_arg = typ_arg.mtype.restype
-            if isinstance(typ_param[idx].mtype.restype,Unknown) and isinstance(typ_arg,Unknown):
+            if isinstance(typ_arg,ArrayType):
+                typ_arg = typ_arg.eletype
+            if isinstance(typ_param[idx],Symbol):
+                p_type = typ_param[idx].mtype.restype
+            if isinstance(p_type,ArrayType):
+                p_type = p_type.eletype
+            if isinstance(p_type,Unknown) and isinstance(typ_arg,Unknown):
                 raise TypeCannotBeInferred(self.ast)
-            elif isinstance(typ_param[idx].mtype.restype,Unknown) and not isinstance(typ_arg,Unknown):
-                self.addtype(ast.method.name,typ_arg,[global_envi[-1]],lambda x:x.name)
-            elif isinstance(typ_param[idx].mtype.restype,type(typ_arg)):
+            elif isinstance(p_type,Unknown) and not isinstance(typ_arg,Unknown):
+                self.addtype(typ_param[idx].name,typ_arg,[global_envi[-1]],lambda x:x.name)
+            elif not isinstance(p_type,type(typ_arg)):
                 raise TypeMismatchInExpression(ast)
         return method
-
-
-
-            
+  
     """ Some case of the array type:
         Var: a[1][2] = {1} => Error: dimen not equal to num lit
         Var: a[3] = {1,2,True}=> Error: Literals not the same type
@@ -468,19 +543,14 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
     """ Visit literals"""
     #TODO: Fix some feature
     def visitArrayLiteral(self,ast,c):
-        check_type = None
-        dimen = [len(ast.value)]
-        for idx,type_lit in enumerate(ast.value):
-            if idx == 0:
-                check_type = self.visit(type_lit,c)
-                if isinstance(check_type,tuple):
-                    dimen += check_type[1]
-                    check_type = check_type[0]
-                continue
-            typ_lit = self.visit(type_lit,c)
-            if isinstance(typ_lit,tuple):
-                typ_lit = typ_lit[0]
-        return check_type,dimen
+        global_envi = c
+        lst_dimen = []
+        ele_type = Unknown()    
+        while isinstance(ast.value, List):
+            lst_dimen.append(len(ast.value))
+            ast = ast.value[0]
+        ele_type = self.visit(ast, global_envi)
+        return ArrayType(lst_dimen, ele_type)
 
     def visitIntLiteral(self,ast,c):
         return IntType()
@@ -503,7 +573,10 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
         for x in lst:
             for sym in x:
                 if name == func(sym):
-                    sym.mtype.restype = typ
+                    if isinstance(sym.mtype.restype,ArrayType):
+                        sym.mtype.restype.eletype = typ
+                    else:
+                        sym.mtype.restype = typ
                     flag = True
                     break
             if flag: break
@@ -519,7 +592,10 @@ Symbol("printStrLn",MType([StringType()],VoidType()))]
                 if name_func == func(sym):
                     for in_type in sym.mtype.intype:
                         if in_type.name == name_para:
-                            in_type.mtype.restype = para_type
+                            if isinstance(in_type.mtype.restype,ArrayType):
+                                in_type.mtype.restype.eletype = typ
+                            else:
+                                in_type.mtype.restype = para_type
                             flag = True
                             break
                 if flag: break

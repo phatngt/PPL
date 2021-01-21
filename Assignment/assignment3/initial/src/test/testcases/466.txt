@@ -1,0 +1,11 @@
+
+        Var: x = 0;
+        Function: main
+            Parameter: c, d
+            Body:
+                Var: check = True;
+                If check && c Then c = False;
+                ElseIf c + d Then x = 1;
+                EndIf.
+            EndBody.
+        

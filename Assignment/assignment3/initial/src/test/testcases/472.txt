@@ -1,0 +1,10 @@
+
+        Var: y;
+        Function: main
+            Parameter: t
+            Body:
+                Var:x,a;
+                For(a = main(x),a < 10, 2) Do
+                EndFor.
+            EndBody.
+        

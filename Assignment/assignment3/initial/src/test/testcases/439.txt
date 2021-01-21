@@ -1,0 +1,16 @@
+
+                Function: main
+                Parameter: x
+                Body:
+                    Var: y = True;
+                    If x Then 
+                        Var: t;
+                        x = y + foo(1);
+                    EndIf.
+                EndBody.
+                Function: foo
+                Parameter: x
+                Body:
+                     x = 1;
+                EndBody.
+                

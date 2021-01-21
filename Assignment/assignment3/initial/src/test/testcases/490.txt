@@ -1,0 +1,12 @@
+
+        Var: x;
+        Function: string_of_bool
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: t
+            Body:
+                
+            EndBody.
+        

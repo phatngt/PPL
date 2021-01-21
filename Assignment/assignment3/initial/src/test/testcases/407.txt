@@ -2,6 +2,7 @@
                     Var: y = "abc";
                     Function: main
                     Body:
+                        Var: t;
                         x = y;
                         Return 1.1;
                     EndBody.

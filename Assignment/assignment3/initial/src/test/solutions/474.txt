@@ -1,0 +1,1 @@
+Type Cannot Be Inferred: For(Id("a"),IntLiteral(1),BinaryOp("<",Id("a"),IntLiteral(2)),CallExpr(Id("main"),[Id("x")]),[],[])

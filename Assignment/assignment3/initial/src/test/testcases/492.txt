@@ -1,0 +1,15 @@
+
+        Var: x;
+        Function: string
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: t
+            Body:
+                Var:x = "True",y;
+                If bool_of_string(x) Then
+                    x = True;
+                EndIf.
+            EndBody.
+        

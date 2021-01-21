@@ -1,0 +1,15 @@
+
+                Var: x = 1,y = 1.1,z;
+                Function: main
+                Parameter: t
+                Body:
+                    Do
+                    While -y
+                    EndDo.
+                EndBody.
+                Function: foo
+                Parameter: x
+                Body:
+                    x = 1;
+                EndBody.
+                

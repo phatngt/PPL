@@ -1,0 +1,12 @@
+
+        Var: t = 1.2;
+        Function: main
+            Parameter: x, y
+            Body:
+                Var: t = 1;
+                If t * 2 Then
+                    Var: x;
+                    x = 1; 
+                EndIf.
+            EndBody.
+        

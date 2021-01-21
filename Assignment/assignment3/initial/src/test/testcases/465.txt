@@ -1,0 +1,18 @@
+
+                Var: x=1,y[2] = {1};
+                Function: foo
+                Parameter: x,y,z
+                Body:
+                    x = 1;
+                    y = "abc";
+                    Return y;
+                EndBody.
+                Function: main
+                Parameter: t[1]
+                Body:
+                    Var: a;
+                    t[1] = foo(1,"2")[1];
+                    a = t[1] +. 1.1;
+                EndBody.
+                
+                

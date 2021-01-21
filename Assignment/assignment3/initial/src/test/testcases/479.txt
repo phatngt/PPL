@@ -1,0 +1,16 @@
+
+        Var: x = 2, y = 3;
+        Var: z = "zz";
+        Function: doST
+            Parameter: n, m
+            Body:
+                n = 1;
+                m = 2;
+                Return n + m;
+            EndBody.
+
+        Function: main
+            Body:
+                z = doST(x,y);
+            EndBody.
+        

@@ -1,0 +1,21 @@
+
+        Var: t = 6;
+        Var: m = 0;
+        Function: main
+            Parameter: a, b
+            Body:
+                Var: z = 1;
+                Do 
+                    m = m + 1;
+                    z = m - z;
+                While
+                    t < m
+                EndDo.
+                Return z;
+            EndBody.
+        
+        Function: doST
+            Body:
+                t = main(1, 2) *. 1.2 \. 2.9;
+            EndBody.
+        

@@ -1,0 +1,9 @@
+
+        Var: x = 0;
+        Function: main
+            Parameter: c
+            Body:
+                If x Then x = 3;
+                EndIf.
+            EndBody.
+        

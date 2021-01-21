@@ -1,0 +1,1 @@
+Type Cannot Be Inferred: Dowhile([],[],CallExpr(Id("main"),[Id("x")]))

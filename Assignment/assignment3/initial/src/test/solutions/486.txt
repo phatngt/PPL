@@ -1,0 +1,1 @@
+Type Mismatch In Statement: If([(Id("t"),[VarDecl(Id("x"),[],None)],[Assign(Id("x"),IntLiteral(1))]),(Id("x"),[],[Assign(Id("x"),IntLiteral(2))])],([],[Assign(Id("x"),IntLiteral(3))]))

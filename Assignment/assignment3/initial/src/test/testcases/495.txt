@@ -1,0 +1,16 @@
+
+        Var: x;
+        Function: string
+        Parameter: x,y
+        Body:
+        EndBody.
+        Function: main
+            Parameter: a
+            Body:
+                Var:x = "True",y, t = 1;
+                If bool_of_string(x) Then
+                    y = printLn();
+                    t = y + 1;
+                EndIf.
+            EndBody.
+        
